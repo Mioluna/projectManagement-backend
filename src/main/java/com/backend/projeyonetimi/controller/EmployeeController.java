@@ -29,12 +29,6 @@ public class EmployeeController {
         return ResponseEntity.ok(updatedEmployee);
     }
 
-    @GetMapping("/{employeeId}")
-    public ResponseEntity<Employee> findEmployeeById(@PathVariable int employeeId){
-        Employee employee = employeeService.findEmployeeById(employeeId);
-        return ResponseEntity.ok(employee);
-    }
-
     @GetMapping("/{employeeId}/assignments")
     public ResponseEntity<List<Project>> findAllRespAssignments(@PathVariable int employeeId){
         List<Project> assignments = employeeService.getAssignments(employeeId);
