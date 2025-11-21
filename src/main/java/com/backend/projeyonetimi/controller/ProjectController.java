@@ -23,6 +23,11 @@ public class ProjectController {
         return ResponseEntity.ok(projects);
     }
 
+    @GetMapping("/{projectId}")
+    public ResponseEntity<Project> getProject(@PathVariable int projectId) {
+        Project existingProject = projectService.findProjectById(projectId);
+    return ResponseEntity.ok(existingProject);}
+
     @PostMapping("/create")
     public ResponseEntity<Project> createProject(@RequestBody Project project){
         Project newProject = projectService.createProject(project);
