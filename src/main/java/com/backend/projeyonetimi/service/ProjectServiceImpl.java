@@ -18,6 +18,11 @@ public class ProjectServiceImpl implements ProjectService{
     private EmployeeRepository employeeRepository;
 
     @Override
+    public List<Project> getAllProjects() {
+        return projectRepository.findAll();
+    }
+
+    @Override
     public Project createProject(Project project){
         return projectRepository.save(project);
     }

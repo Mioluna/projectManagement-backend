@@ -15,12 +15,17 @@ public class EmployeeServiceImpl implements EmployeeService{
     private EmployeeRepository employeeRepository;
 
     @Override
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
+    }
+
+    @Override
     public Employee createEmployee(Employee employee){
         return employeeRepository.save(employee);
     }
 
     @Override
-    public Employee updateEmployee(Employee employee) {
+    public Employee updateEmployee(int employeeId, Employee employee) {
         Employee existingEmployee = employeeRepository.findById(employee.getId())
                 .orElseThrow(() -> new RuntimeException("Employee not found with id " + employee.getId()));
 

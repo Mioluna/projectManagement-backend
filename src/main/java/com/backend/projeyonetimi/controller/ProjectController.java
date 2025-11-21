@@ -2,7 +2,6 @@ package com.backend.projeyonetimi.controller;
 
 import com.backend.projeyonetimi.model.Employee;
 import com.backend.projeyonetimi.model.Project;
-import com.backend.projeyonetimi.service.EmployeeService;
 import com.backend.projeyonetimi.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/project")
@@ -18,8 +16,12 @@ public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
-    @Autowired
-    private EmployeeService employeeService;
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Project>> getAllProjects(){
+        List<Project> projects = projectService.getAllProjects();
+        return ResponseEntity.ok(projects);
+    }
 
     @PostMapping("/create")
     public ResponseEntity<Project> createProject(@RequestBody Project project){
@@ -44,14 +46,10 @@ public class ProjectController {
         projectService.deleteProject(projectId);
     }
 
-    @GetMapping("/{projectId}/employees")
-    public ResponseEntity<List<String>> getAllAssignees(@PathVariable int projectId){
+    @GetMapping("/{projectId}/assignees")
+    public ResponseEntity<List<Employee>> getAllAssignees(@PathVariable int projectId){
         List<Employee> employees = projectService.getAllAssignees(projectId);
-        List<String> employeeNames = employees.stream()
-                .map(Employee::getFirstName)
-            .collect(Collectors.toList());
-
-        return ResponseEntity.ok(employeeNames);
+        return ResponseEntity.ok(employees);
     }
 
     @PostMapping("/{projectId}/assign")

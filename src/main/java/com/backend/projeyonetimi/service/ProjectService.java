@@ -13,5 +13,6 @@ public interface ProjectService {
     public void assignProject(Integer employeeId, Project project);
     public void unassignProject(Integer employeeId, Project project);
     public void deleteProject(Integer id);
+    public List<Project> getAllProjects();
 
 }

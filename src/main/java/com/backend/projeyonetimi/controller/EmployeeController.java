@@ -17,15 +17,21 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    @GetMapping("/all")
+    public ResponseEntity<List<Employee>> getAllEmployees(){
+        List<Employee> employees = employeeService.getAllEmployees();
+        return ResponseEntity.ok(employees);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee){
         Employee newEmployee = employeeService.createEmployee(employee);
         return ResponseEntity.status(HttpStatus.CREATED).body(newEmployee);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee){
-        Employee updatedEmployee = employeeService.updateEmployee(employee);
+    @PutMapping("/{employeeId}/update")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable int employeeId, @RequestBody Employee updatedData){
+        Employee updatedEmployee = employeeService.updateEmployee(employeeId, updatedData);
         return ResponseEntity.ok(updatedEmployee);
     }
 
