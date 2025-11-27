@@ -4,6 +4,7 @@ import com.backend.projeyonetimi.dtos.AuthenticationResponse;
 import com.backend.projeyonetimi.dtos.LoginRequest;
 import com.backend.projeyonetimi.model.Employee;
 import com.backend.projeyonetimi.repository.EmployeeRepository;
+import com.backend.projeyonetimi.security.JwtService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
