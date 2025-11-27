@@ -1,5 +1,7 @@
 package com.backend.projeyonetimi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 @Entity
 public class Project {
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -16,6 +19,7 @@ public class Project {
     private String status;
 
     @ManyToMany(mappedBy = "assignments")
+    @JsonIgnore
     private List<Employee> assignees;
 
     public Project() {

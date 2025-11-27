@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/projeYonetimi
+    username: postgres
+    password: 811Aa019
+    driver-class-name: org.postgresql.Driver
+
+  application:
+    name: ProjeYonetimi
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  jwt.secret: 8e7323578245d80291abd7470c2f4821
+  jwt.expiration: 3600000
